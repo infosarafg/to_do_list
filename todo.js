@@ -38,7 +38,8 @@
         id: this._nextId++,
         title: this._clean(title),
         completed: false,
-        priority: this._checkPriority(priority),
+      priority: this._checkPriority(priority),
+
       };
       this._tasks.push(task);
       return task;
