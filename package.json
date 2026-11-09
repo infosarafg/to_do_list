@@ -1,0 +1,7 @@
+{
+  "name": "todo-xp-web",
+  "version": "1.0.0",
+  "description": "To-Do List built with Extreme Programming (TP 6)",
+  "scripts": { "test": "node --test" },
+  "license": "MIT"
+}

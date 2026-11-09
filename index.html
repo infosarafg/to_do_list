@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daftar – your tasks, in order</title>
+  <meta name="description" content="Daftar is a simple to-do list: add tasks, set a priority, find and finish them.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2317204D'/%3E%3Cpath d='M9 16.5l4.8 4.8L23 11.5' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+
+    <aside class="rail">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="9" fill="#fff" fill-opacity=".12"/>
+          <path d="M9 16.5l4.8 4.8L23 11.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-name">Daftar</span>
+      </div>
+
+      <section class="progress" aria-labelledby="progress-title">
+        <h2 id="progress-title" class="sr-only">Progress</h2>
+        <div class="ring">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="ring-track" cx="60" cy="60" r="52"/>
+            <circle class="ring-bar" id="ring-bar" cx="60" cy="60" r="52"/>
+          </svg>
+          <div class="ring-text">
+            <strong id="ring-pct">0%</strong>
+            <span id="ring-sub">No tasks yet</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="load" aria-labelledby="load-title">
+        <h2 id="load-title">Still to do</h2>
+        <ul id="load"></ul>
+      </section>
+
+      <p class="rail-note">Your list is saved in this browser.</p>
+    </aside>
+
+    <main class="main">
+      <header class="head">
+        <p id="today" class="date"></p>
+        <h1>Your tasks</h1>
+      </header>
+
+      <form id="add-form" class="composer" autocomplete="off">
+        <label class="sr-only" for="title">New task</label>
+        <input id="title" type="text" placeholder="What needs doing?" maxlength="120">
+
+        <fieldset class="seg">
+          <legend class="sr-only">Priority</legend>
+          <label><input type="radio" name="priority" value="High"><span class="seg-opt p-high">High</span></label>
+          <label><input type="radio" name="priority" value="Medium" checked><span class="seg-opt p-medium">Medium</span></label>
+          <label><input type="radio" name="priority" value="Low"><span class="seg-opt p-low">Low</span></label>
+        </fieldset>
+
+        <button type="submit" class="btn-primary">Add task</button>
+      </form>
+      <p id="error" class="error" role="alert"></p>
+
+      <div class="toolbar">
+        <div class="tabs" role="group" aria-label="Show tasks">
+          <button type="button" class="tab" data-filter="all" aria-pressed="true">All <span class="tab-count" id="count-all">0</span></button>
+          <button type="button" class="tab" data-filter="active" aria-pressed="false">To do <span class="tab-count" id="count-active">0</span></button>
+          <button type="button" class="tab" data-filter="done" aria-pressed="false">Done <span class="tab-count" id="count-done">0</span></button>
+        </div>
+        <div class="controls">
+          <label class="search">
+            <span class="sr-only">Search tasks</span>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <input id="search" type="search" placeholder="Search  (press /)">
+          </label>
+          <label class="order">
+            <span class="sr-only">Order</span>
+            <select id="order">
+              <option value="added">In order added</option>
+              <option value="priority">By priority</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <ul id="tasks" class="ledger"></ul>
+
+      <div id="empty" class="empty" hidden>
+        <p id="empty-title" class="empty-title"></p>
+        <p id="empty-text" class="empty-text"></p>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" hidden>
+    <span id="toast-text"></span>
+    <button id="toast-undo" type="button">Undo</button>
+  </div>
+
+  <script src="todo.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
